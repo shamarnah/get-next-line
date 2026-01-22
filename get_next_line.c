@@ -113,7 +113,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = bfrnewl(buffer);
+	if (!line)
+		return (freebuf(&buffer));
 	buffer = aftrnewl(buffer);
+	if (!buffer)
+		return (freebuf(&line));
 	return (line);
 }
 /* int main()
